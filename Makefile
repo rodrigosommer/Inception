@@ -11,9 +11,14 @@ setup:
 	@sudo sysctl -w net.ipv4.ip_unprivileged_port_start=443 2>/dev/null || true
 
 data_dirs:
-	@mkdir -p /goinfre/rsommer/data/wordpress
-	@mkdir -p /goinfre/rsommer/data/mariadb
-	@if [ ! -e $(DATA_DIR) ]; then ln -sf /goinfre/rsommer/data $(DATA_DIR); fi
+	@if [ -d /goinfre/rsommer ]; then \
+		mkdir -p /goinfre/rsommer/data/wordpress; \
+		mkdir -p /goinfre/rsommer/data/mariadb; \
+		if [ ! -e $(DATA_DIR) ]; then ln -sf /goinfre/rsommer/data $(DATA_DIR); fi; \
+	else \
+		mkdir -p $(DATA_DIR)/wordpress; \
+		mkdir -p $(DATA_DIR)/mariadb; \
+	fi
 
 hosts:
 	@if ! grep -q "$(DOMAIN)" /etc/hosts; then \
