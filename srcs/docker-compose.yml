@@ -14,7 +14,7 @@ services:
     secrets:
       - db_password
       - db_root_password
-    restart: unless-stopped
+    restart: always
 
   wordpress:
     build:
@@ -34,7 +34,7 @@ services:
       - db_password
       - credentials
       - wp_user_password
-    restart: unless-stopped
+    restart: always
 
   nginx:
     build:
@@ -50,7 +50,7 @@ services:
       - inception
     depends_on:
       - wordpress
-    restart: unless-stopped
+    restart: always
 
 volumes:
   wordpress:
