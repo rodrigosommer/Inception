@@ -1,0 +1,4 @@
+secrets/db_password.txt
+secrets/db_root_password.txt
+secrets/credentials.txt
+secrets/wp_user_password.txt
